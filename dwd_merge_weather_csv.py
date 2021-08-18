@@ -8,6 +8,8 @@ from os.path import join
 from zipfile import ZipFile
 
 
+print("merge dwd_weather_csv")
+
 with open('dwd_weather.csv', 'w', newline='') as export:
 
     fieldnames = [
@@ -81,3 +83,6 @@ with open('dwd_weather.csv', 'w', newline='') as export:
                 'temperatur_in_hoehe_2m_min': row[" TNK"].strip(),
                 'temperatur_in_hoehe_5cm_min': row[" TGK"].strip()
             })
+
+print("finished press enter to exit...")
+input()

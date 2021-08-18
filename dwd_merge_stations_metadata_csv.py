@@ -7,6 +7,8 @@ from os.path import join
 from zipfile import ZipFile
 
 
+print("merge dwd_stations_metadata")
+
 with open('dwd_stations_metadata.csv', 'w', newline='') as export:
     fieldnames = [
         'stationid',
@@ -45,3 +47,6 @@ with open('dwd_stations_metadata.csv', 'w', newline='') as export:
                 'bis': row["bis_datum"].strip(),
                 'stationsname': row["Stationsname"].strip(),
             })
+
+print("finished press enter to exit...")
+input()
