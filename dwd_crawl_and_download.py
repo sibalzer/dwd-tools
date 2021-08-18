@@ -23,10 +23,18 @@ def crawl_and_download(url: str, cwd_path: str):
                 pass
             print(f"move into {url+link}")
             crawl_and_download(url+link, cwd_path+link)
-        print(f"Downloading: {link}")
-        content = requests.get(url+link).content
-        with open(f"{cwd_path}/{link}", "wb") as file:
-            file.write(content)
+        else:
+            while True:
+                try:
+                    print(f"Downloading: {link}", end='')
+                    content = requests.get(url+link, timeout=10).content
+                except requests.exceptions.ConnectTimeout:
+                    print(f" --- failed (timeout) try again")
+                    continue
+                print("")
+                break
+            with open(f"{cwd_path}/{link}", "wb") as file:
+                file.write(content)
 
 
 if __name__ == "__main__":
